@@ -119,6 +119,7 @@ header {
 
 
 #btn-inicio,
+#btn-sair,
 #btn-login,
 #btn-sobre,
 #btn-contato {
@@ -142,6 +143,7 @@ header {
 
 #btn-inicio:hover,
 #btn-login:hover,
+#btn-sair:hover,
 #btn-sobre:hover,
 #btn-contato:hover {
 

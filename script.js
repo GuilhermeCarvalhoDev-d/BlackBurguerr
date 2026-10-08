@@ -1470,3 +1470,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnLogin = document.getElementById('btn-login');
+    const btnSair = document.getElementById('btn-sair');
+
+    // Verifica se existe algum usuário salvo no localStorage
+    const usuarioLogado = localStorage.getItem('usuarioLogado'); // Altere a chave conforme o nome que usou
+
+    if (usuarioLogado) {
+        // Se estiver logado: esconde o Login e mostra o Sair
+        if (btnLogin) btnLogin.parentElement.parentElement.style.display = 'none';
+        if (btnSair) btnSair.parentElement.parentElement.style.display = 'inline-block';
+    } else {
+        // Se não estiver logado: mostra o Login e esconde o Sair
+        if (btnLogin) btnLogin.parentElement.parentElement.style.display = 'inline-block';
+        if (btnSair) btnSair.parentElement.parentElement.style.display = 'none';
+    }
+});
