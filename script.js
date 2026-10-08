@@ -1329,28 +1329,36 @@ if (formLogin) {
 
                 }
 
+// 1. Monta o texto da nota/comprovante
+const textoNota = 
+`🍔 BLACK BURGUER 🍔
 
-                alert(
+Pedido nº ${resultado.pedido.numero} realizado com sucesso!
 
-                    '🍔 BLACK BURGUER 🍔\n\n' +
+Total: R$ ${total.toFixed(2).replace('.', ',')}
+Pagamento: ${nomePagamento}
+Endereço: ${endereco}
 
-                    'Pedido nº ' + resultado.pedido.numero +
-                    ' realizado com sucesso!\n\n' +
+Obrigado pela preferência!`;
 
-                    'Total: R$ ' +
-                    total
-                        .toFixed(2)
-                        .replace('.', ',') +
+// 2. Cria o arquivo Blob em memória (com suporte a UTF-8 para emojis e acentos)
+const blob = new Blob([textoNota], { type: 'text/plain;charset=utf-8' });
 
-                    '\nPagamento: ' +
-                    nomePagamento +
+// 3. Cria um link temporário para o download
+const url = URL.createObjectURL(blob);
+const link = document.createElement('a');
 
-                    '\nEndereço: ' +
-                    endereco +
+link.href = url;
+// Define o nome do arquivo que será baixado
+link.download = `comprovante_pedido_${resultado.pedido.numero}.txt`;
 
-                    '\n\nObrigado pela preferência!'
+// 4. Executa o clique automático para iniciar o download
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
 
-                );
+// 5. Libera a URL da memória
+URL.revokeObjectURL(url);
 
                 const formProduto = document.getElementById('form-produto');
 
